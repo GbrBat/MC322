@@ -1,17 +1,33 @@
 package pessoas;
+import textos.Livro;
 
 public class Professor {
 	private int id_professor;
-	private String nome;
-	private String disciplina;
-	private String sala_atendimento;
-	
-	public Professor (int id_professor, String nome, String disciplina, String sala_atendimento) {
-		this.id_professor = id_professor;
-		this.nome = nome;
-		this.disciplina = disciplina;
-		this.sala_atendimento = sala_atendimento;
-	}
+    private String nome;
+    private String disciplina;
+    private String sala_atendimento;
+    private Livro[] livrosRecomendados; // Array de livros recomendados
+    private int numLivrosRecomendados;
+
+    public Professor(int id_professor, String nome, String disciplina, String sala_atendimento, int maxLivros) {
+        this.id_professor = id_professor;
+        this.nome = nome;
+        this.disciplina = disciplina;
+        this.sala_atendimento = sala_atendimento;
+        this.livrosRecomendados = new Livro[maxLivros];
+        this.numLivrosRecomendados = 0;
+    }
+    
+    public void recomendarLivro(Livro livro) {
+        if (numLivrosRecomendados < livrosRecomendados.length) {
+            livrosRecomendados[numLivrosRecomendados] = livro;
+            numLivrosRecomendados++;
+        }
+    }
+
+    public Livro[] getLivrosRecomendados() {
+        return livrosRecomendados;
+    }
 	
 	public int getId_professor() {
 		return id_professor;
